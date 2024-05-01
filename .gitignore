@@ -5,3 +5,4 @@ nhap.py
 test_list.txt
 ViTrain.py
 samples/
+__pycache__
