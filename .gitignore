@@ -6,3 +6,5 @@ test_list.txt
 ViTtrain.py
 samples/
 __pycache__
+requirements_old.txt
+model.py
