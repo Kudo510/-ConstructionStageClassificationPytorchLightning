@@ -7,4 +7,6 @@ ViTtrain.py
 samples/
 __pycache__
 requirements_old.txt
-model.py
+lightning_logs/
+ImageClassificationPytochLightning/
+.vscode/
