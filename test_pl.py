@@ -7,8 +7,8 @@ import pandas as pd
 import numpy as np
 import os
 import argparse
-
-from model import ImageClassification
+import pytorch_lightning as L
+from model import ImageClassificationPytochLightning
 
 parser = argparse.ArgumentParser(description='Test and Visualization')
 parser.add_argument('-i', '--idx', default=0, type=int)
@@ -26,8 +26,12 @@ transform = transforms.Compose([
 path_labels = "data/updated_stage_labels.csv"
 df = pd.read_csv(path_labels)
 classes = df['labels'].unique().astype(str)
-model = ImageClassification(classes=classes)
-model.load_state_dict(torch.load("saved_checkpoints/best_checkpoint.pth"))
+
+# model = ImageClassificationPytochLightning.load_from_checkpoint("lightning_logs/version_11/checkpoints/epoch=49-step=26100.ckpt")
+# model = ImageClassificationPytochLightning(classes=classes)
+
+checkpoint_model = ImageClassificationPytochLightning.load_from_checkpoint("lightning_logs/version_12/checkpoints/epoch=49-step=26100.ckpt")
+model = ImageClassificationPytochLightning(classes=classes, **checkpoint_model.init_model_args())
 
 
 # Test for single image in the test set list. e.g here the first image
